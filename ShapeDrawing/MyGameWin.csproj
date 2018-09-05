@@ -40,6 +40,7 @@
     <Compile Include="src\Circle.cs" />
     <Compile Include="src\Drawing.cs" />
     <Compile Include="src\GameMain.cs" />
+    <Compile Include="src\Line.cs" />
     <Compile Include="src\Rectangle.cs" />
     <Compile Include="src\Shape.cs" />
   </ItemGroup>

@@ -11,14 +11,14 @@ namespace MyGame
     {
         private float _endX, _endY;
 
-        public Line() : this(Color.Red, 1, 1, 5, 5) { }
+        public Line() : this(Color.Red, 1, 1) { }
 
-        public Line(Color clr, float startX, float startY, float endX, float endY) : base(clr)
+        public Line(Color clr, float startX, float startY) : base(clr)
         {
             X = startX;
             Y = startY;
-            _endX = endX;
-            _endY = endY;
+            _endX = X + 10;
+            _endY = Y + 10;
             Color = clr;
         }
 
@@ -27,7 +27,7 @@ namespace MyGame
 
         public override void Draw()
         {
-            SwinGame.DrawLine(Color, X, Y, _endX, _endY);
+            SwinGame.DrawLine(Color, X, Y, _endX, Y);
             if (Selected) DrawOutline();
         }
 
