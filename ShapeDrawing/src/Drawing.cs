@@ -49,11 +49,6 @@ namespace MyGame
         public virtual void Draw()
         {
             SwinGame.ClearScreen(_background);
-
-            //foreach (Shape s in _shapes)
-            //{
-            //    s.Draw();
-            //}
             for (int i = 0; i < _shapes.Count; i++)
             {
                 _shapes[i].Draw();

@@ -8,7 +8,8 @@ namespace MyGame
         private enum ShapeKind
         {
             Rectangle,
-            Circle
+            Circle,
+            Line
         }
 
         public static void Main()
@@ -33,7 +34,6 @@ namespace MyGame
 
                 // Clear the screen and draw the framerate
                 SwinGame.ClearScreen(drawing.Background);
-                drawing.Draw();
                 SwinGame.DrawFramerate(0, 0);
 
                 // Sets shape type based on user input
@@ -45,26 +45,30 @@ namespace MyGame
                 {
                     kindToAdd = ShapeKind.Circle;
                 }
+                else if (Input.KeyTyped(KeyCode.LKey))
+                {
+                    kindToAdd = ShapeKind.Line;
+                }
 
                 // Sets shapes position from mouse click
                 if (Input.MouseClicked(MouseButton.LeftButton))
                 {
-                    Shape myShape = new Shape();
-
+                    Shape myShape;
                     if (kindToAdd == ShapeKind.Circle)
                     {
-                        Circle circle = new Circle();
-                        myShape = circle;
+                        myShape = new Circle();
                     }
                     else if (kindToAdd == ShapeKind.Rectangle)
                     {
-                        Rectangle rect = new Rectangle();
-                        myShape = rect;
+                        myShape = new Rectangle();
+                    }
+                    else
+                    {
+                        myShape = new Line();
                     }
 
                     myShape.X = SwinGame.MouseX();
                     myShape.Y = SwinGame.MouseY();
-
                     drawing.AddShape(myShape);
                 }
 
@@ -83,6 +87,9 @@ namespace MyGame
                 {
                     drawing.RemoveShapes();
                 }
+
+                drawing.Draw();
+
                 // Draw onto the screen
                 SwinGame.RefreshScreen(60);
             }

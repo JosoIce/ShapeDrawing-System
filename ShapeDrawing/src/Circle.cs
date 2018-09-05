@@ -11,32 +11,36 @@ namespace MyGame
     {
         private int _radius;
 
-        public int Radius
+        public int Radius { get => _radius; set => _radius = value; }
+
+        public Circle() : this(Color.Blue, 0, 0, 50) { }
+
+        public Circle(Color clr, float x, float y, int radius) : base(clr)
         {
-            get
-            {
-                return _radius;
-            }
-            set
-            {
-                _radius = value;
-            }
+            X = x;
+            Y = y;
+            _radius = radius;
+            Color = clr;
         }
 
-        public Circle()
-        {
-            _radius = 50;
-        }
 
         public override void Draw()
-        {
-            if (Selected) DrawOutline();
+        { 
             SwinGame.FillCircle(Color, X, Y, _radius);
+            if (Selected) DrawOutline();
         }
         
         public override void DrawOutline()
         {
-            SwinGame.DrawCircle(Color.Black, X, Y, (_radius + 2));
+            if (Selected)
+            {
+                SwinGame.DrawCircle(Color.Black, X, Y, _radius + 2);
+            }
+        }
+
+        public override bool IsAt(Point2D pt)
+        {
+            return SwinGame.PointInCircle(pt, X, Y, _radius);
         }
     }
 }

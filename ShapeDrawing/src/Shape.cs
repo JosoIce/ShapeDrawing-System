@@ -7,22 +7,18 @@ using SwinGameSDK;
 
 namespace MyGame
 {
-    public class Shape
+    public abstract class Shape
     {
         private Color _color;
         private float _x, _y;
-        private int _width, _height;
         private bool _selected;
 
-        public Shape()
-        {
-            _color = Color.Green;
-            _x = 0;
-            _y = 0;
-            _width = 100;
-            _height = 100;
-        }
+        public Shape() : this(Color.Yellow) { }
 
+        public Shape(Color clr)
+        {
+            _color = clr;
+        }
 
         public Color Color
         {
@@ -65,55 +61,12 @@ namespace MyGame
 
         }
 
-        public int Width
-        {
-            get
-            {
-                return _width;
-            }
-
-            set
-            {
-                _width = value;
-            }
-        }
-
-        public int Height
-        {
-            get
-            {
-                return _height;
-            }
-
-            set
-            {
-                _height = value;
-            }
-        }
-
         public bool Selected { get => _selected; set => _selected = value; }
 
-        public virtual void Draw()
-        {
-            SwinGame.FillRectangle(_color, _x, _y, _width, _height);
-            if (_selected) DrawOutline();
-        }
+        public abstract void Draw();
 
-        public bool IsAt(Point2D pt)
-        {
-            if (Geometry.PointInRect(pt, X, Y, Width, Width))
-                {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        public abstract void DrawOutline();
 
-        public virtual void DrawOutline()
-        {
-            SwinGame.DrawRectangle(Color.Black, (_x-2), (_y-2), (_width+4), (_height+4));
-        }
+        public abstract bool IsAt(Point2D pt);
     }
 }
