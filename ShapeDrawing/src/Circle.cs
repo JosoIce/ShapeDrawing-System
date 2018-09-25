@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using SwinGameSDK;
 
 namespace MyGame
@@ -41,6 +42,14 @@ namespace MyGame
         public override bool IsAt(Point2D pt)
         {
             return SwinGame.PointInCircle(pt, X, Y, _radius);
+        }
+
+        public override void SaveTo(StreamWriter writer)
+        {
+            writer.WriteLine("Circle");
+            base.SaveTo(writer);
+
+            writer.WriteLine(Radius);
         }
     }
 }

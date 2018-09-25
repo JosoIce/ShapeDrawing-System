@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using SwinGameSDK;
 
 namespace MyGame
@@ -79,6 +80,19 @@ namespace MyGame
             foreach (Shape s in SelectedShapes)
             {
                 _shapes.Remove(s);
+            }
+        }
+
+        public void Save(string filename)
+        {
+            StreamWriter writer = new StreamWriter(".../.../" + filename, true);
+
+            writer.WriteLine(Background.ToArgb());
+            writer.WriteLine(ShapeCount);
+
+            foreach (Shape s in _shapes)
+            {
+                s.SaveTo(writer);
             }
         }
     }

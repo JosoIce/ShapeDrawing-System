@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using SwinGameSDK;
 
 namespace MyGame
@@ -68,5 +69,12 @@ namespace MyGame
         public abstract void DrawOutline();
 
         public abstract bool IsAt(Point2D pt);
+
+        public virtual void SaveTo(StreamWriter writer)
+        {
+            writer.WriteLine(Color.ToArgb());
+            writer.WriteLine(X);
+            writer.WriteLine(Y);
+        }
     }
 }

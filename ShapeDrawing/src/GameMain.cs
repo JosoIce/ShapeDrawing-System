@@ -88,6 +88,11 @@ namespace MyGame
                     drawing.RemoveShapes();
                 }
 
+                if (Input.KeyTyped(KeyCode.SKey))
+                {
+                    drawing.Save("TestDrawing.txt");
+                }
+
                 drawing.Draw();
 
                 // Draw onto the screen

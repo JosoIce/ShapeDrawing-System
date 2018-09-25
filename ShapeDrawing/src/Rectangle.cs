@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,5 +67,13 @@ namespace MyGame
             return SwinGame.PointInRect(pt, X, Y, Width, Height);
         }
 
+        public override void SaveTo(StreamWriter writer)
+        {
+            writer.WriteLine("Rectangle");
+            base.SaveTo(writer);
+
+            writer.WriteLine(Width);
+            writer.WriteLine(Height);
+        }
     }
 }

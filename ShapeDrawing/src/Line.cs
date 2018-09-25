@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using SwinGameSDK;
 
 namespace MyGame
@@ -40,6 +41,15 @@ namespace MyGame
         public override bool IsAt(Point2D pt)
         {
             return SwinGame.PointOnLine(pt, X, Y, _endX, _endY);
+        }
+
+        public override void SaveTo(StreamWriter writer)
+        {
+            writer.WriteLine("Line");
+            base.SaveTo(writer);
+
+            writer.WriteLine(EndX);
+            writer.WriteLine(EndY);
         }
     }
 }
