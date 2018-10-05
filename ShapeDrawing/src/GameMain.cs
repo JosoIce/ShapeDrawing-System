@@ -90,7 +90,7 @@ namespace MyGame
 
                 if (Input.KeyTyped(KeyCode.SKey))
                 {
-                    drawing.Save("TestDrawing.txt");
+                    drawing.Save(@"C:\Testing\TestDrawing.txt");
                 }
 
                 drawing.Draw();

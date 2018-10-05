@@ -85,14 +85,46 @@ namespace MyGame
 
         public void Save(string filename)
         {
-            StreamWriter writer = new StreamWriter(".../.../" + filename, true);
-
-            writer.WriteLine(Background.ToArgb());
-            writer.WriteLine(ShapeCount);
-
-            foreach (Shape s in _shapes)
+            using (StreamWriter writer = new StreamWriter(filename))
             {
-                s.SaveTo(writer);
+                writer.WriteLine(Background.ToArgb());
+                writer.WriteLine(ShapeCount);
+
+                foreach (Shape s in _shapes)
+                {
+                    s.SaveTo(writer);
+                }
+                writer.Close();
+            }
+        }
+
+        public void Load(string filename)
+        {
+            StreamReader reader = new StreamReader(filename);
+            Background = Color.FromArgb(reader.ReadInteger());
+            int count = reader.ReadInteger();
+            Shape s;
+            string kind;
+            
+            for (int i = 0; i < count; i++)
+            {
+                kind = reader.ReadLine();
+
+                if (kind == "Rectangle")
+                {
+                    s = new Rectangle();
+                }
+                if (kind == "Circle")
+                {
+                    s = new Circle();
+                }
+                if (kind == "Line")
+                {
+                    s = new Line();
+                }
+
+                s.LoadFrom(reader);
+                AddShape(s);
             }
         }
     }
