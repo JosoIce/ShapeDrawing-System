@@ -93,6 +93,11 @@ namespace MyGame
                     drawing.Save(@"C:\Testing\TestDrawing.txt");
                 }
 
+                if (Input.KeyTyped(KeyCode.OKey))
+                {
+                    drawing.Load(@"C:\Testing\TestDrawing.txt");
+                }
+
                 drawing.Draw();
 
                 // Draw onto the screen

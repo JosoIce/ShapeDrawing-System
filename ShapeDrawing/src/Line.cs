@@ -51,5 +51,12 @@ namespace MyGame
             writer.WriteLine(EndX);
             writer.WriteLine(EndY);
         }
+
+        public override void LoadFrom(StreamReader reader)
+        {
+            base.LoadFrom(reader);
+            EndX = reader.ReadInteger();
+            EndY = reader.ReadInteger();
+        }
     }
 }

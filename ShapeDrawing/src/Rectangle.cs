@@ -74,5 +74,12 @@ namespace MyGame
             writer.WriteLine(Width);
             writer.WriteLine(Height);
         }
+
+        public override void LoadFrom(StreamReader reader)
+        {
+            base.LoadFrom(reader);
+            Width = reader.ReadInteger();
+            Height = reader.ReadInteger();
+        }
     }
 }

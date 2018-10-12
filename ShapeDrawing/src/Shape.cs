@@ -76,5 +76,12 @@ namespace MyGame
             writer.WriteLine(X);
             writer.WriteLine(Y);
         }
+
+        public virtual void LoadFrom(StreamReader reader)
+        {
+            Color = Color.FromArgb(reader.ReadInteger());
+            X = reader.ReadInteger();
+            Y = reader.ReadInteger();
+        }
     }
 }

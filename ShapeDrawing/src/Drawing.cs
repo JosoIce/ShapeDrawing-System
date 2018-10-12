@@ -100,32 +100,64 @@ namespace MyGame
 
         public void Load(string filename)
         {
-            StreamReader reader = new StreamReader(filename);
-            Background = Color.FromArgb(reader.ReadInteger());
-            int count = reader.ReadInteger();
-            Shape s;
-            string kind;
-            
-            for (int i = 0; i < count; i++)
+            using (StreamReader reader = new StreamReader(filename))
             {
-                kind = reader.ReadLine();
+                Background = Color.FromArgb(reader.ReadInteger());
+                int count = reader.ReadInteger();
+                Shape s = new Rectangle();
+                string kind;
 
-                if (kind == "Rectangle")
+                for (int i = 0; i < count; i++)
                 {
-                    s = new Rectangle();
-                }
-                if (kind == "Circle")
-                {
-                    s = new Circle();
-                }
-                if (kind == "Line")
-                {
-                    s = new Line();
-                }
+                    kind = reader.ReadLine();
 
-                s.LoadFrom(reader);
-                AddShape(s);
+                    if (kind == "Rectangle")
+                    {
+                        s = new Rectangle();
+                    }
+                    if (kind == "Circle")
+                    {
+                        s = new Circle();
+                    }
+                    if (kind == "Line")
+                    {
+                        s = new Line();
+                    }
+
+                    s.LoadFrom(reader);
+                    AddShape(s);
+                }
+                reader.Close();
             }
+
+
+            //StreamReader reader = new StreamReader(filename);
+            //Background = Color.FromArgb(reader.ReadInteger());
+            //int count = reader.ReadInteger();
+            //Shape s = new Rectangle();
+            //string kind;
+            
+            //for (int i = 0; i < count; i++)
+            //{
+            //    kind = reader.ReadLine();
+
+            //    if (kind == "Rectangle")
+            //    {
+            //        s = new Rectangle();
+            //    }
+            //    if (kind == "Circle")
+            //    {
+            //        s = new Circle();
+            //    }
+            //    if (kind == "Line")
+            //    {
+            //        s = new Line();
+            //    }
+
+            //    s.LoadFrom(reader);
+            //    AddShape(s);
+            //    reader.Close();
+            //}
         }
     }
 }
